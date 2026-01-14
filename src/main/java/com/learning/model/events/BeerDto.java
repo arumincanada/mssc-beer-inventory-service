@@ -1,4 +1,4 @@
-package guru.sfg.common.events;
+package com.learning.model.events;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;

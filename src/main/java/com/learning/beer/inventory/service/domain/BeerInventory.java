@@ -14,14 +14,16 @@
  *     You should have received a copy of the GNU General Public License
  *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package guru.sfg.beer.inventory.service.domain;
+package com.learning.beer.inventory.service.domain;
 
+import jakarta.persistence.Column;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.*;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
@@ -30,41 +32,25 @@ import java.util.UUID;
 /**
  * Created by jt on 2019-01-26.
  */
-
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
-@MappedSuperclass
-public class BaseEntity {
+@Entity
+public class BeerInventory extends BaseEntity{
 
-    public BaseEntity(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate) {
-        this.id = id;
-        this.version = version;
-        this.createdDate = createdDate;
-        this.lastModifiedDate = lastModifiedDate;
+    @Builder
+    public BeerInventory(UUID id, Long version, Timestamp createdDate, Timestamp lastModifiedDate, UUID beerId,
+                         String upc, Integer quantityOnHand) {
+        super(id, version, createdDate, lastModifiedDate);
+        this.beerId = beerId;
+        this.upc = upc;
+        this.quantityOnHand = quantityOnHand;
     }
 
-    @Id
     @JdbcTypeCode(SqlTypes.VARCHAR)
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false )
-    private UUID id;
+    private UUID beerId;
 
-    @Version
-    private Long version;
-
-    @CreationTimestamp
-    @Column(updatable = false)
-    private Timestamp createdDate;
-
-    @UpdateTimestamp
-    private Timestamp lastModifiedDate;
-
-    public boolean isNew() {
-        return this.id == null;
-    }
+    private String upc;
+    private Integer quantityOnHand = 0;
 }

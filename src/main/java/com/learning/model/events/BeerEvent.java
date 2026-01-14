@@ -1,4 +1,4 @@
-package guru.sfg.common.events;
+package com.learning.model.events;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
