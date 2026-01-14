@@ -1,4 +1,4 @@
-package com.learning.model.events;
+package com.learning.brewery.model.events;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;

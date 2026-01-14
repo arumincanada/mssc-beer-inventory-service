@@ -1,4 +1,4 @@
-package com.learning.model;
+package com.learning.brewery.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

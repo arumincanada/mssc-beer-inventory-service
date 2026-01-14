@@ -1,4 +1,4 @@
-package com.learning.model.events;
+package com.learning.brewery.model.events;
 
 import lombok.NoArgsConstructor;
 
